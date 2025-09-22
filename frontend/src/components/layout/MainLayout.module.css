@@ -1,0 +1,53 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    background-color: #f9fafb;
+}
+
+.header {
+    padding: 1.5rem 2.5rem;
+    background-color: white;
+    border-bottom: 1px solid #e5e7eb;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-shrink: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    z-index: 10;
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: #1f2937;
+    margin: 0;
+}
+
+.welcomeMessage {
+    color: #4b5563;
+    margin-top: 0.25rem;
+}
+
+.logoutButton {
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: white;
+  background-color: #ef4444;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.mainContent {
+    flex-grow: 1;
+    overflow-y: auto;
+    /* We apply padding to a wrapper div inside the children for better control */
+}
+
+/* This allows AlertBanner to be full-width while page content has padding */
+.mainContent > div {
+    padding: 2.5rem;
+}

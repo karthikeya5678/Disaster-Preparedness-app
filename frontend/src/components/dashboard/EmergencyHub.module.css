@@ -1,0 +1,74 @@
+/* --- NEW, ATTRACTIVE STYLES for the Emergency Hub --- */
+
+.hubContainer {
+    background-color: #1f2937; /* A slightly lighter dark gray to stand out from the sidebar */
+    border: 1px solid #4b5563; /* Subtle border for definition */
+    border-radius: 8px;
+    padding: 1rem;
+    margin-top: 1.5rem; /* Ensure consistent spacing */
+}
+
+.title {
+    margin: 0 0 0.25rem 0;
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #fca5a5; /* A softer, more professional red for the title */
+    text-align: center;
+    letter-spacing: 0.5px;
+}
+
+.subtitle {
+    margin: 0 0 1.25rem 0;
+    font-size: 0.8rem;
+    color: #9ca3af; /* Lighter gray for the subtitle */
+    text-align: center;
+}
+
+.contactList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem; /* Tighter spacing for a cleaner look */
+}
+
+.contactRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #374151; /* Darker background for each row */
+    padding: 0.5rem 0.75rem;
+    border-radius: 6px;
+    transition: background-color 0.2s ease;
+}
+
+.contactRow:hover {
+    background-color: #4b5563; /* Lighter on hover */
+}
+
+.contactInfo {
+    font-weight: 500;
+    color: #e5e7eb; /* Light text for readability */
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.icon {
+    font-size: 1.25rem;
+    opacity: 0.8;
+}
+
+.callButton {
+    background-color: #ef4444; /* Bright, clear red for the action button */
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0.4rem 1.25rem;
+    border-radius: 999px; /* Pill shape */
+    transition: background-color 0.2s ease, transform 0.2s ease;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.callButton:hover {
+    background-color: #dc2626;
+    transform: scale(1.05); /* Add a satisfying pop effect */
+}

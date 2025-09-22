@@ -1,0 +1,184 @@
+.container {
+    display: grid;
+    grid-template-columns: 1fr; /* Single column on mobile */
+    min-height: 100vh;
+    background-color: #f9fafb;
+}
+
+/* The left-side branding panel */
+.panel {
+    display: none; /* Hidden on mobile for a focused form experience */
+    background: linear-gradient(135deg, #4f46e5, #6366f1);
+    color: white;
+    padding: 3rem;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.panelHeader h1 {
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.panelIllustration {
+    width: 100%;
+    max-width: 400px;
+    margin: 2rem auto;
+}
+
+.panelQuote {
+    font-size: 1.125rem;
+    font-style: italic;
+    color: #e0e7ff;
+    max-width: 400px;
+}
+.panelQuote footer {
+    margin-top: 0.5rem;
+    font-weight: bold;
+    color: white;
+}
+
+/* The right-side form area */
+.formContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.card {
+    width: 100%;
+    max-width: 400px;
+    background-color: white;
+    padding: 2.5rem;
+    border-radius: 12px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+}
+
+.title {
+    font-size: 1.75rem;
+    font-weight: bold;
+    text-align: center;
+    color: #111827;
+    margin-bottom: 2rem;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+}
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    margin-bottom: 0.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+}
+
+.input {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input:focus {
+    outline: none;
+    border-color: #4f46e5;
+    box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+}
+
+.button {
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: white;
+    background-color: #4f46e5;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.1s;
+}
+.button:hover {
+    background-color: #4338ca;
+}
+.button:active {
+    transform: scale(0.98);
+}
+.button:disabled {
+    background-color: #a5b4fc;
+    cursor: not-allowed;
+}
+
+.forgotPasswordContainer {
+    text-align: right;
+    margin-top: -0.75rem;
+}
+
+.forgotPasswordLink {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #4f46e5;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+}
+.forgotPasswordLink:hover {
+    text-decoration: underline;
+}
+
+.messageSuccess {
+    font-size: 0.875rem;
+    color: #16a34a;
+    text-align: center;
+    background-color: #f0fdf4;
+    padding: 0.75rem;
+    border-radius: 6px;
+    border: 1px solid #bbf7d0;
+}
+
+.error {
+    font-size: 0.875rem;
+    color: #dc2626;
+    text-align: center;
+    background-color: #fee2e2;
+    padding: 0.75rem;
+    border-radius: 6px;
+}
+
+.linkText {
+    font-size: 0.875rem;
+    text-align: center;
+    color: #4b5563;
+    margin-top: 1.5rem;
+}
+
+.link {
+    color: #4f46e5;
+    font-weight: 600;
+    text-decoration: none;
+}
+.link:hover {
+    text-decoration: underline;
+}
+
+/* This media query enables the split-screen layout on tablets and desktops */
+@media (min-width: 768px) {
+    .container {
+        grid-template-columns: 1fr 1fr;
+    }
+    .panel {
+        display: flex;
+    }
+}

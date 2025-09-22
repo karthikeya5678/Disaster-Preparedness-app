@@ -1,0 +1,115 @@
+.backLink {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+    color: #4f46e5;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition: background-color 0.2s;
+}
+
+.backLink:hover {
+    background-color: #e0e7ff;
+}
+
+.profileContainer {
+    max-width: 600px;
+    margin: 0 auto;
+    background-color: white;
+    padding: 2rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1), 0 1px 2px rgba(0,0,0,0.06);
+}
+
+.profileForm h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-top: 0;
+    margin-bottom: 1.5rem;
+}
+
+.formGroup {
+    margin-bottom: 1.5rem;
+}
+
+.formGroup label {
+    display: block;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    color: #374151;
+}
+
+.formGroup input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #d1d5db;
+    border-radius: 6px;
+}
+
+.formGroup input:disabled {
+    background-color: #f3f4f6;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.saveButton {
+    width: 100%;
+    padding: 0.75rem;
+    font-weight: 600;
+    color: white;
+    background-color: #16a34a;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.saveButton:hover {
+    background-color: #15803d;
+}
+
+.messageSuccess {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #15803d;
+}
+
+.messageError {
+    text-align: center;
+    margin-top: 1rem;
+    font-weight: 500;
+    color: #dc2626;
+}
+
+.resetSection {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.resetSection h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.resetSection p {
+    color: #4b5563;
+    margin-bottom: 1rem;
+}
+
+.resetButton {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    color: #3730a3;
+    background-color: #e0e7ff;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.resetButton:hover {
+    background-color: #c7d2fe;
+}

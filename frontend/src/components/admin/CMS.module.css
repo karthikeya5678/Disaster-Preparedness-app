@@ -1,0 +1,87 @@
+.formBox, .listBox {
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.formGroup {
+    margin-bottom: 1rem;
+}
+
+.formGroup label {
+    display: block;
+    margin-bottom: 0.25rem;
+    font-weight: 500;
+}
+
+.formGroup input, .formGroup textarea, .formGroup select {
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #d1d5db;
+    box-shadow: inset 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.subheading {
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    border-top: 1px solid #e5e7eb;
+    padding-top: 1.5rem;
+}
+
+.lessonBox {
+    border: 1px solid #e5e7eb;
+    border-radius: 6px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    display: grid;
+    gap: 0.75rem;
+    background-color: #f9fafb;
+}
+
+.divider {
+    border: none;
+    border-top: 1px solid #e5e7eb;
+    margin: 1.5rem 0;
+}
+
+.actions {
+    display: flex;
+    gap: 1rem;
+}
+
+.button, .saveButton, .deleteButton, .cancelButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.button { background-color: #4f46e5; }
+.button:hover { background-color: #4338ca; }
+
+.saveButton { background-color: #16a34a; flex-grow: 1; }
+.saveButton:hover { background-color: #15803d; }
+
+.cancelButton { background-color: #6b7280; }
+.cancelButton:hover { background-color: #4b5563; }
+
+.deleteButton { background-color: #dc2626; }
+.deleteButton:hover { background-color: #b91c1c; }
+
+/* List Styles */
+.listItem {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem;
+    border-bottom: 1px solid #f3f4f6;
+}
+.listItem:last-child { border-bottom: none; }
+.listItemTitle { font-weight: 500; }
+.listItemActions { display: flex; gap: 0.5rem; }

@@ -1,0 +1,115 @@
+.container {
+    padding: 1.5rem;
+    background: linear-gradient(135deg, #e0f2fe, #f0f9ff);
+    border-radius: 12px;
+    position: relative;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid #a5f3fc;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+.header h3 { font-size: 1.5rem; margin: 0; color: #0c4a6e; }
+.header p { color: #075985; margin-top: 0.25rem; font-weight: 500; }
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 5px;
+    border: 5px solid #a16207;
+    background-color: #f7fee7;
+    border-radius: 8px;
+    padding: 5px;
+    position: relative;
+}
+
+.cell {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    cursor: pointer;
+    background-size: 80%;
+    background-position: center;
+    background-repeat: no-repeat;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+}
+.cell:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.7);
+}
+
+.grass { background-color: #dcfce7; }
+.start { background-color: #dcfce7; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%239a3412'%3E%3Cpath d='M12 3L2 12h3v8h14v-8h3L12 3zm-2 15v-6h4v6H10z'/%3E%3C/svg%3E"); }
+.end { background-color: #dcfce7; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23be123c'%3E%3Cpath d='M12 2c5.52 0 10 4.48 10 10s-4.48 10-10 10S2 17.52 2 12 6.48 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z'/%3E%3C/svg%3E"); }
+.water { background-color: #7dd3fc; cursor: not-allowed; animation: wave 2s infinite ease-in-out; }
+@keyframes wave { 50% { transform: scale(0.98); border-radius: 10%; } }
+
+.path {
+    background-color: #fef9c3; /* Yellow brick road */
+}
+
+.player {
+    width: 80%;
+    height: 80%;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='black'%3E%3Cpath d='M12 2a2 2 0 110 4 2 2 0 010-4zm0 6c-2.76 0-5 2.24-5 5v7h2v-7c0-1.65 1.35-3 3-3s3 1.35 3 3v7h2v-7c0-2.76-2.24-5-5-5z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    top: 10%;
+    left: 10%;
+    animation: player-pop 0.3s ease-out;
+}
+@keyframes player-pop { from { transform: scale(0); } to { transform: scale(1); } }
+
+.flooded { animation: flood-animation 0.5s forwards; }
+@keyframes flood-animation { from { background-color: #7dd3fc; } to { background-color: #075985; transform: scale(1.2); } }
+.won { animation: win-pulse 1s infinite; }
+@keyframes win-pulse { 0% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0.7); } 70% { box-shadow: 0 0 0 20px rgba(22, 163, 74, 0); } 100% { box-shadow: 0 0 0 0 rgba(22, 163, 74, 0); } }
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(17, 24, 39, 0.85);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    border-radius: 8px;
+    animation: fadeIn 0.5s ease;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+.playButton { margin-top: 1.5rem; padding: 0.75rem 2rem; font-weight: 600; font-size: 1.125rem; color: #0c4a6e; background-color: #e0f2fe; border: none; border-radius: 999px; cursor: pointer; }
+
+/* --- NEW CONTROL HUB STYLES --- */
+.controls {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: center;
+}
+
+.undoButton {
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #4b5563;
+    background-color: #e5e7eb;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+.undoButton:hover {
+    background-color: #d1d5db;
+}
+.undoButton:disabled {
+    background-color: #f3f4f6;
+    color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.7;
+}

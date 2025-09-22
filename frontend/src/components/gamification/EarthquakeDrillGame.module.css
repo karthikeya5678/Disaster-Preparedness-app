@@ -1,0 +1,74 @@
+.gameContainer {
+    background-color: #f9fafb;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    min-height: 550px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.instructions {
+    text-align: center;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #1f2937;
+}
+
+.gameArea {
+    width: 100%;
+    height: 450px;
+    position: relative;
+    border-radius: 8px;
+    border: 3px solid #d1d5db;
+    overflow: hidden;
+    background-color: #f0f9ff;
+}
+
+.wall { position: absolute; bottom: 20%; left: 0; width: 100%; height: 80%; background-color: #fefce8; }
+.floor { position: absolute; bottom: 0; left: 0; width: 100%; height: 20%; background-color: #d2b48c; border-top: 5px solid #854d0e; }
+.window { position: absolute; top: 15%; left: 10%; width: 25%; height: 50%; background-color: #a5f3fc; border: 8px solid white; box-shadow: 0 0 10px rgba(0,0,0,0.2); }
+.shelf { position: absolute; top: 15%; right: 5%; width: 25%; height: 10px; background-color: #854d0e; }
+.table { position: absolute; bottom: 0; left: 50%; width: 30%; height: 35%; border-top: 15px solid #854d0e; }
+.table::before, .table::after { content: ''; position: absolute; bottom: -80px; width: 15px; height: 80px; background-color: #854d0e; }
+.table::before { left: 10px; }
+.table::after { right: 10px; }
+
+.book, .vase { position: absolute; }
+.book { width: 25px; height: 35px; background-color: #dc2626; top: -40px; }
+.book:nth-child(2) { left: 40px; background-color: #1d4ed8; }
+.vase { width: 20px; height: 30px; background-color: #16a34a; left: 80px; top: -35px; border-radius: 50% 50% 0 0; }
+
+.person { position: absolute; bottom: 0; left: 5%; width: 50px; height: 100px; cursor: grab; background-color: #0ea5e9; border-radius: 50% 50% 0 0; text-align: center; color: white; font-weight: bold; padding-top: 5px; z-index: 10; }
+.person:active { cursor: grabbing; }
+
+.dropZone { position: absolute; background-color: rgba(0,0,0,0); border: 4px dashed rgba(0,0,0,0); transition: all 0.2s; z-index: 5; border-radius: 12px; }
+.dropZone:hover { background-color: rgba(0, 255, 0, 0.2); border-color: #16a34a; }
+.dropZone[data-safe="false"]:hover { background-color: rgba(255, 0, 0, 0.2); border-color: #dc2626; }
+
+.shake { animation: intenseShake 0.8s cubic-bezier(.36,.07,.19,.97) both infinite; }
+@keyframes intenseShake {
+  10%, 90% { transform: translate3d(-1px, -2px, 0); }
+  20%, 80% { transform: translate3d(2px, 3px, 0); }
+  30%, 50%, 70% { transform: translate3d(-4px, -3px, 0); }
+  40%, 60% { transform: translate3d(4px, 2px, 0); }
+}
+.fall1 { animation: fall 0.8s ease-in 0.2s forwards; }
+.fall2 { animation: fall 0.9s ease-in 0.5s forwards; }
+.fall3 { animation: fall 0.7s ease-in 0.3s forwards; }
+@keyframes fall {
+  from { transform: translateY(0) rotate(0); opacity: 1; }
+  to { transform: translateY(300px) rotate(180deg); opacity: 0; }
+}
+
+.startScreen, .resultsScreen { text-align: center; padding: 2rem; }
+.resultsScreen h2 { font-size: 2rem; font-weight: bold; }
+.feedbackText { font-size: 1.125rem; margin: 1rem 0; color: #374151; }
+.correct { color: #16a34a; }
+.incorrect { color: #dc2626; }
+.correctIcon, .incorrectIcon { font-size: 4rem; line-height: 1; }
+.correctIcon { color: #16a34a; }
+.incorrectIcon { color: #dc2626; }
+.playButton { margin-top: 1.5rem; padding: 0.75rem 2rem; font-weight: 600; font-size: 1.125rem; color: white; background-color: #4f46e5; border: none; border-radius: 999px; cursor: pointer; }

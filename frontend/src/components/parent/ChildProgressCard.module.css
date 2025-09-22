@@ -1,0 +1,30 @@
+.progressGrid {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    padding: 1rem 0;
+}
+
+.statBox {
+    display: flex;
+    flex-direction: column;
+}
+
+.statValue {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #4f46e5;
+    line-height: 1;
+}
+
+.statLabel {
+    margin-top: 0.5rem;
+    font-size: 0.875rem;
+    color: #6b7280;
+    font-weight: 500;
+}
+
+.error {
+    color: #b91c1c;
+    font-weight: 500;
+}

@@ -1,0 +1,30 @@
+.badgeGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.badge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    width: 120px;
+    cursor: help;
+}
+
+.badgeIcon {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background-color: #f3f4f6;
+    margin-bottom: 0.5rem;
+    object-fit: cover;
+    border: 3px solid #e5e7eb;
+}
+
+.badgeName {
+    font-weight: 600;
+    color: #1f2937;
+    font-size: 1rem;
+}

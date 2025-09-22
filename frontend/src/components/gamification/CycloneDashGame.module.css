@@ -1,0 +1,159 @@
+.container {
+    height: 450px;
+    background: linear-gradient(to bottom, #87ceeb, #f0f9ff); /* Calm sky */
+    border-radius: 12px;
+    position: relative;
+    overflow: hidden;
+    transition: background 2s ease-in-out;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 2px solid #e5e7eb;
+}
+
+.container.storm {
+    background: linear-gradient(to bottom, #2c3e50, #485461); /* Stormy sky */
+    animation: flash 4s ease-in-out infinite;
+}
+
+.rain {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAA8CAYAAAB47c5oAAAAAXNSR0IArs4c6QAAAXxJREFUKBV1U9sNwjAMvV5sN2CH2CQ2STaJzZA5sJ2AERiBDWiAjdg2YAQ2sA0eL23S6kNSJPUjD38/8UHyR4/P543u7u4sDEzDMM/7/l9EaGu1L48/y4rGQRQF/++9f03TfP/v5103TVN89/2fp7NarbYslsxlpc05L8vyjKOAAPg8L1ar1bZt24cQQgCAbdu2aZpmvV6vYRiG53m+A4AQQgBgWRZVVY1Go9FgMCjLslqtVlXVCIIAjmOmafx+P47jQRDw3k8IIQBwHCfLsiAI+L7/v8d5HhRFkWWZ/X5/vV6v1+uO48jxGMa+7/s/R0RE5L3/fd/v9/t8Ps/z/GEYhmEYv98/jyPO4zzv+0IIIYQQ+L5PKc2yLMMwDMMwz/M8z5dluV6v22w2m81mWZaXpmnSNG02m0Kp930fM0ZRFEtLSzRN8/v9LMsyxnGMMQCA67rruq7r+s+hYRiGYRhEUVVVte/7Go0GXdePMca13VVF8e/LshzHAa/Xuzf+vwlVVV2i1L2GgYVgGAAAAABJRU5ErkJggg==');
+    animation: rain 0.3s linear infinite;
+    opacity: 0;
+    transition: opacity 2s ease-in-out;
+    z-index: 5; /* The rain is at level 5 */
+}
+
+.storm .rain {
+    opacity: 0.5;
+}
+
+@keyframes rain {
+    from { background-position: 0 0; }
+    to { background-position: 20px 40px; }
+}
+
+.ground {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 20%;
+    background: #15803d;
+    z-index: 1;
+}
+
+.tree {
+    position: absolute;
+    bottom: 90%;
+    width: 50px;
+    height: 100px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23166534'%3E%3Cpath d='M12 2L2 22h20L12 2zm-2 18h4v-8h-4v8z'/%3E%3C/svg%3E");
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform-origin: bottom center;
+}
+.tree1 { left: 25%; }
+.tree2 { right: 25%; }
+
+.storm .tree {
+    animation: treeSway 0.8s ease-in-out infinite alternate;
+}
+
+@keyframes treeSway {
+    from { transform: rotate(-8deg); }
+    to { transform: rotate(8deg); }
+}
+
+@keyframes flash {
+    50% { background: linear-gradient(to bottom, #3e5165, #5a6878); }
+}
+
+.buildingWrapper {
+    position: absolute;
+    text-align: center;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    /* --- THIS IS THE CRITICAL FIX --- */
+    z-index: 10; /* Buildings are now at level 10, on TOP of the rain */
+}
+
+.buildingWrapper:hover {
+    transform: scale(1.15) rotate(2deg);
+}
+
+.building {
+    font-size: 5rem;
+    filter: drop-shadow(3px 5px 2px rgb(0 0 0 / 0.4));
+}
+
+.hut { bottom: 15%; left: 10%; }
+.shelter { bottom: 15%; left: 50%; transform: translateX(-50%); }
+.house { bottom: 15%; right: 10%; }
+
+.storm .hut, .storm .house {
+    animation: buildingShake 0.4s ease-in-out infinite alternate;
+}
+
+@keyframes buildingShake {
+    from { transform: translateX(-3px); }
+    to { transform: translateX(3px); }
+}
+
+.overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.7);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 1rem;
+    z-index: 20; /* The overlay is on top of everything */
+    backdrop-filter: blur(4px);
+}
+
+.overlay h3 {
+    font-size: 1.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.overlay p {
+    max-width: 350px;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+.playButton {
+    margin-top: 1.5rem;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    font-size: 1rem;
+    color: #1e3a8a;
+    background-color: #a5f3fc;
+    border: none;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+.playButton:hover {
+    transform: scale(1.05);
+}
+
+.correct {
+    color: #bef264;
+    font-weight: bold;
+}
+
+.incorrect {
+    color: #fca5a5;
+    font-weight: bold;
+}

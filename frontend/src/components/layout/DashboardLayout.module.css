@@ -1,0 +1,114 @@
+.dashboardContainer {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.sidebar {
+    width: 280px;
+    background-color: #111827;
+    color: #9ca3af;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 1.5rem;
+    flex-shrink: 0;
+}
+
+.sidebarMain {
+    display: flex;
+    flex-direction: column;
+    min-height: 0; 
+}
+
+.sidebarHeader h3 {
+    font-size: 1.75rem;
+    font-weight: bold;
+    color: white;
+    text-align: center;
+    margin: 0 0 2.5rem 0;
+    flex-shrink: 0;
+}
+
+.navListWrapper {
+    overflow-y: auto;
+}
+.navListWrapper::-webkit-scrollbar { width: 6px; }
+.navListWrapper::-webkit-scrollbar-thumb { background: #4b5563; border-radius: 3px; }
+
+.navList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.navList a {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: #d1d5db;
+    text-decoration: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+.navList a:hover { background-color: #374151; color: white; }
+.navList a.active {
+    background-color: #4f46e5;
+    color: white;
+    font-weight: 600;
+}
+
+.icon {
+    width: 1.5rem;
+    height: 1.5rem;
+}
+
+.sidebarFooter {
+    padding-top: 1.5rem;
+    border-top: 1px solid #374151;
+    flex-shrink: 0;
+}
+
+.emergencyButton {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    background-color: #991b1b;
+    color: white;
+    border: none;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease, box-shadow 0.2s ease;
+    margin-bottom: 1.5rem;
+}
+.emergencyButton:hover {
+    background-color: #b91c1c;
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.4);
+}
+
+.userProfile { display: flex; align-items: center; gap: 0.75rem; }
+.profileLink { flex-grow: 1; display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; border-radius: 8px; text-decoration: none; transition: background-color 0.2s ease; }
+.profileLink:hover { background-color: #374151; }
+.avatar { width: 40px; height: 40px; border-radius: 50%; background-color: #4f46e5; color: white; display: flex; justify-content: center; align-items: center; font-weight: bold; flex-shrink: 0; }
+.userInfo { display: flex; flex-direction: column; overflow: hidden; }
+.userName { color: white; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.userRole { color: #9ca3af; font-size: 0.8rem; text-transform: capitalize; }
+.logoutButton { background: none; border: none; color: #9ca3af; padding: 0.5rem; border-radius: 6px; cursor: pointer; flex-shrink: 0; transition: background-color 0.2s ease, color 0.2s ease; }
+.logoutButton:hover { background-color: #ef4444; color: white; }
+.logoutButton svg { width: 1.5rem; height: 1.5rem; }
+
+.mainContent {
+    flex-grow: 1;
+    background-color: #f9fafb;
+    overflow-y: auto;
+}
+
+.mainContent > * {
+    padding: 2.5rem;
+}

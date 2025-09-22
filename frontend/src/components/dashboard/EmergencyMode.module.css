@@ -1,0 +1,99 @@
+.container {
+    background-color: #111827; /* Dark background for high alert */
+    color: white;
+    padding: 2rem;
+    border-radius: 12px;
+    animation: fadeIn 0.5s ease-in-out;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+.alertHeader {
+    text-align: center;
+    border-bottom: 2px solid #ef4444;
+    padding-bottom: 1rem;
+    margin-bottom: 2rem;
+}
+.alertHeader h1 {
+    color: #ef4444;
+    font-size: 2.5rem;
+    margin: 0;
+    animation: pulse 1.5s infinite;
+}
+@keyframes pulse {
+    50% { opacity: 0.8; }
+}
+.alertHeader p {
+    font-size: 1.25rem;
+    margin-top: 0.5rem;
+}
+
+.actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+}
+
+.safeButton, .helpButton {
+    padding: 2rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+.safeButton:hover, .helpButton:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+.safeButton {
+    background-color: #22c55e;
+    color: white;
+}
+.helpButton {
+    background-color: #ef4444;
+    color: white;
+}
+.icon {
+    font-size: 3rem;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+}
+
+.contacts {
+    margin-top: 3rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #4b5563;
+}
+.contacts h3 { text-align: center; }
+
+.contactGrid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+.contactCard {
+    background-color: #374151;
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.contactButtons { display: flex; gap: 0.5rem; }
+.contactButtons a {
+    background-color: #4f46e5;
+    color: white;
+    text-decoration: none;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+}
+
+.confirmation { text-align: center; padding: 2rem; }
+.safeText { color: #4ade80; font-weight: bold; font-size: 1.25rem; }
+.helpText { color: #f87171; font-weight: bold; font-size: 1.25rem; }
