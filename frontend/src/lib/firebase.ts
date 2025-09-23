@@ -5,7 +5,7 @@ import { getFirestore } from "firebase/firestore";
 
 // TODO: Add your own Firebase configuration object that you saved earlier
 const firebaseConfig = {
-  apiKey: "AIzaSyBwYihrfpp-ImW8a9DCPyBvOcSpQsM6CT8",
+  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
   authDomain: "disaster-429f0.firebaseapp.com",
   projectId: "disaster-429f0",
   storageBucket: "disaster-429f0.firebasestorage.app",

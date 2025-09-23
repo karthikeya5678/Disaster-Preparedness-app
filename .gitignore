@@ -10,6 +10,9 @@ frontend/build/
 backend/.env
 backend/src/config/serviceAccountKey.json
 
+# NEW: Frontend secret files
+frontend/.env
+
 # Logs
 *.log
 npm-debug.log*
