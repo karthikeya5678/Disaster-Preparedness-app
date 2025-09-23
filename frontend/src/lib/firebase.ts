@@ -1,24 +1,24 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-// TODO: Add your own Firebase configuration object that you saved earlier
+// --- THIS IS THE CRITICAL FIX ---
+// The code now correctly reads the variable prefixed with "VITE_"
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "disaster-429f0.firebaseapp.com",
   projectId: "disaster-429f0",
-  storageBucket: "disaster-429f0.firebasestorage.app",
-  messagingSenderId: "385733181390",
-  appId: "1:385733181390:web:a8b2c1565090e2fe80759f",
-  measurementId: "G-JR7NKEC6ZV"
+  storageBucket: "disaster-429f0.appspot.com",
+  messagingSenderId: "YOUR_MESSAGING_SENDER_ID", // Find this in your Firebase project settings
+  appId: "YOUR_APP_ID" // Find this in your Firebase project settings
 };
 
-// Initialize Firebase
-const app = initializeApp(firebaseConfig);
+// This safety check will help with future debugging.
+if (!firebaseConfig.apiKey) {
+    console.error("FATAL ERROR: Firebase API Key is missing. The application cannot start.");
+}
 
-// Initialize Firebase services
+const app = initializeApp(firebaseConfig);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
-
 export default app;
