@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { onSnapshot, Query, type DocumentData } from 'firebase/firestore';
+import { onSnapshot, Query } from 'firebase/firestore';
 
 // --- THIS IS THE CRITICAL FIX ---
 // 1. The hook is now "generic". <T> is a placeholder for any specific type we want, like Drill or UserProfile.
