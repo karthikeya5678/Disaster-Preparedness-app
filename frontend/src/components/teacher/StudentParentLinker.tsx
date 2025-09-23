@@ -78,8 +78,9 @@ const StudentParentLinker: React.FC = () => {
         }
     };
 
-    // if (loading) return <p>Loading student and parent data...</p>;
-    // if (error) return <p style={{ color: '#dc2626', fontWeight: 500 }}>{error}</p>;
+    if (loading) return <p>Loading student and parent data...</p>;
+    if (error) return <p style={{ color: '#dc2626', fontWeight: 500 }}>{error}</p>;
+    
 
     return (
         <div className={styles.container}>
@@ -135,3 +136,12 @@ const StudentParentLinker: React.FC = () => {
 };
 
 export default StudentParentLinker;
+
+function setError(arg0: string) {
+    throw new Error('Function not implemented.');
+}
+
+
+function setLoading(arg0: boolean) {
+    throw new Error('Function not implemented.');
+}
