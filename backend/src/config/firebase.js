@@ -1,8 +1,10 @@
 const admin = require('firebase-admin');
 
-// IMPORTANT: This file expects 'serviceAccountKey.json' to be in the same directory.
-// Make sure you have downloaded this file from your Firebase project settings.
-const serviceAccount = require('./serviceAccountKey.json');
+// --- THIS IS THE CRITICAL FIX ---
+// The old path was './serviceAccountKey.json', which looked in the current folder.
+// The new path '../../serviceAccountKey.json' tells the code to go up two levels
+// from 'src/config/' to the main 'backend/' folder to find the file where Render places it.
+const serviceAccount = require('../../serviceAccountKey.json');
 
 // Initialize the Firebase Admin SDK
 admin.initializeApp({
