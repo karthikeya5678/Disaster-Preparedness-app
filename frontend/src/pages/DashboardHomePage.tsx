@@ -46,14 +46,14 @@ const DashboardHomePage: React.FC = () => {
             if (currentLocation && currentUser) {
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await client.get(`http://localhost:8080/api/alerts?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}`, {
+                    const res = await client.get(`/api/alerts?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     // Find the first alert with "High" severity to trigger emergency mode
                     const highSeverityAlert = res.data.find((a: ActiveAlert) => a.severity === 'High');
                     setActiveAlert(highSeverityAlert || null);
-                } catch (error) { 
-                    console.error("Could not check for active alerts", error); 
+                } catch (error) {
+                    console.error("Could not check for active alerts", error);
                 }
             }
         };
@@ -69,7 +69,7 @@ const DashboardHomePage: React.FC = () => {
     if (!currentUser) {
         return <p>Could not load user information. Please log in again.</p>;
     }
-    
+
     // --- CRITICAL: EMERGENCY MODE OVERRIDE ---
     // If there is an active high-severity alert, show the EmergencyMode component and nothing else.
     if (activeAlert) {
@@ -90,14 +90,14 @@ const DashboardHomePage: React.FC = () => {
             case 'admin':
                 return <AdminDashboard />;
             case 'parent':
-                 return <ParentDashboard />;
+                return <ParentDashboard />;
             case 'super-admin':
-                 return <SuperAdminDashboard />;
+                return <SuperAdminDashboard />;
             default:
                 return (
                     <div className={styles.roleSpecificContent}>
-                         <h1 className={styles.title}>Welcome, {currentUser.fullName}!</h1>
-                         <p className={styles.subtitle}>Select an option from the sidebar to get started.</p>
+                        <h1 className={styles.title}>Welcome, {currentUser.fullName}!</h1>
+                        <p className={styles.subtitle}>Select an option from the sidebar to get started.</p>
                     </div>
                 );
         }
@@ -107,13 +107,13 @@ const DashboardHomePage: React.FC = () => {
     return (
         <div>
             <div style={{ marginBottom: '2rem' }}>
-                <LocationWidget 
-                    initialLocation={currentLocation} 
-                    onLocationChange={setCurrentLocation} 
+                <LocationWidget
+                    initialLocation={currentLocation}
+                    onLocationChange={setCurrentLocation}
                     initialError={geoError}
                 />
             </div>
-            
+
             {renderDashboardByRole()}
 
             <RegionalOutlook location={currentLocation} />
