@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 import styles from './LocationWidget.module.css';
 
@@ -23,7 +23,7 @@ const LocationWidget: React.FC<LocationWidgetProps> = ({ initialLocation, onLoca
                 setLoading(true);
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await axios.get(`http://localhost:8080/api/weather?lat=${initialLocation.latitude}&lon=${initialLocation.longitude}`, {
+                    const res = await client.get(`http://localhost:8080/api/weather?lat=${initialLocation.latitude}&lon=${initialLocation.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     setWeather(res.data);
@@ -43,7 +43,7 @@ const LocationWidget: React.FC<LocationWidgetProps> = ({ initialLocation, onLoca
         setSearchError('');
         try {
             const token = await auth.currentUser?.getIdToken();
-            const res = await axios.get(`http://localhost:8080/api/weather/by-city?q=${searchCity}`, {
+            const res = await client.get(`http://localhost:8080/api/weather/by-city?q=${searchCity}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setWeather(res.data); // Update this widget's own display

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
 import useGeolocation from '../../hooks/useGeolocation'; // We need the location hook here
@@ -23,7 +23,7 @@ const AlertBanner: React.FC = () => {
             if (currentUser && location) {
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await axios.get(`http://localhost:8080/api/alerts?lat=${location.latitude}&lon=${location.longitude}`, {
+                    const res = await client.get(`http://localhost:8080/api/alerts?lat=${location.latitude}&lon=${location.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     // Show all non-High severity alerts

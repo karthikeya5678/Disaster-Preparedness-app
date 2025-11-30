@@ -1,0 +1,24 @@
+services:
+  - type: web
+    name: disaster-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: PORT
+        value: 8080
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: FIREBASE_SERVICE_ACCOUNT
+        sync: false
+      - key: AWS_REGION
+        sync: false
+      - key: AWS_ACCESS_KEY_ID
+        sync: false
+      - key: AWS_SECRET_ACCESS_KEY
+        sync: false
+      - key: S3_BUCKET_NAME
+        sync: false
+      - key: OPENWEATHER_API_KEY
+        sync: false

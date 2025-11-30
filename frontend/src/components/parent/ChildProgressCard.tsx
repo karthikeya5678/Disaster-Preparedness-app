@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../lib/AuthContext';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 import DashboardCard from '../dashboard/DashboardCard';
 import styles from './ChildProgressCard.module.css';
@@ -28,13 +28,13 @@ const ChildProgressCard: React.FC = () => {
                 const token = await auth.currentUser?.getIdToken();
                 const headers = { Authorization: `Bearer ${token}` };
 
-                const childRes = await axios.get('http://localhost:8080/api/users/my-child', { headers });
+                const childRes = await client.get('/api/users/my-child', { headers });
                 const childProfile = childRes.data;
                 
                 // This check is now more robust.
                 if (childProfile && childProfile.uid) {
                     setChild(childProfile);
-                    const progressRes = await axios.get(`http://localhost:8080/api/progress?uid=${childProfile.uid}`, { headers });
+                    const progressRes = await client.get(`http://localhost:8080/api/progress?uid=${childProfile.uid}`, { headers });
                     setProgress(progressRes.data);
                 } else {
                     // This will now only trigger if the backend sends a truly empty response.

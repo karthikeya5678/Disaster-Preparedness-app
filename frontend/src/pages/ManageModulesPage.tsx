@@ -4,7 +4,7 @@ import MainLayout from '../components/layout/MainLayout';
 import ModuleForm from '../components/admin/ModuleForm'; // Update the path if your ModuleForm is in 'components/admin'
 // import ModuleList from '../components/ModuleList'; // Update the path if the file is in a different location
 import ModuleList from '../components/admin/ModuleList'; // Update the path if your ModuleList is in 'components/admin'
-import axios from 'axios';
+import client from '../api/client';
 import { useAuth } from '../lib/AuthContext';
 import { auth } from '../lib/firebase';
 
@@ -33,7 +33,7 @@ const ManageModulesPage: React.FC = () => {
         if (!currentUser) return;
         try {
             const token = await auth.currentUser?.getIdToken();
-            const res = await axios.get('http://localhost:8080/api/education/modules', {
+            const res = await client.get('/api/education/modules', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setModules(res.data);

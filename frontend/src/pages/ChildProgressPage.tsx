@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../lib/AuthContext';
-import axios from 'axios';
+import client from '../api/client';
 import { auth } from '../lib/firebase';
 import MainLayout from '../components/layout/MainLayout';
 import Achievements from '../components/student/Achievements';
@@ -19,10 +19,10 @@ const ChildProgressPage: React.FC = () => {
                 const token = await auth.currentUser?.getIdToken();
                 const headers = { Authorization: `Bearer ${token}` };
                 // We need to find the child's UID first
-                const childRes = await axios.get('http://localhost:8080/api/users/my-child', { headers });
+                const childRes = await client.get('/api/users/my-child', { headers });
                 setChild(childRes.data);
                 // Then, we can fetch the child's progress using their UID
-                const progressRes = await axios.get(`http://localhost:8080/api/progress?uid=${childRes.data.uid}`, { headers });
+                const progressRes = await client.get(`http://localhost:8080/api/progress?uid=${childRes.data.uid}`, { headers });
                 setProgress(progressRes.data);
             } catch (error) {
                 console.error("Failed to fetch child data", error);

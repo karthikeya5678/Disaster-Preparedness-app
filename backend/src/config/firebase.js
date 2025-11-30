@@ -1,10 +1,9 @@
 const admin = require('firebase-admin');
 
-// --- THIS IS THE CRITICAL FIX ---
-// The old path was './serviceAccountKey.json', which looked in the current folder.
-// The new path '../../serviceAccountKey.json' tells the code to go up two levels
-// from 'src/config/' to the main 'backend/' folder to find the file where Render places it.
-const serviceAccount = require('../../serviceAccountKey.json');
+// Check for environment variable first (for Render), then fall back to local file
+const serviceAccount = process.env.FIREBASE_SERVICE_ACCOUNT
+  ? JSON.parse(process.env.FIREBASE_SERVICE_ACCOUNT)
+  : require('../../serviceAccountKey.json');
 
 // Initialize the Firebase Admin SDK
 admin.initializeApp({

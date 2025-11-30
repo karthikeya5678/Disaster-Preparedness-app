@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
 import styles from './AnalyticsOverview.module.css'; // We will create this CSS file next
@@ -27,7 +27,7 @@ const AnalyticsOverview: React.FC = () => {
             }
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await axios.get(`http://localhost:8080/api/dashboard/admin?institutionId=${currentUser.institutionId}`, {
+                const res = await client.get(`http://localhost:8080/api/dashboard/admin?institutionId=${currentUser.institutionId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(res.data);

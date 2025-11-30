@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
@@ -28,8 +28,8 @@ const EducationModules: React.FC = () => {
         try {
             const token = await auth.currentUser?.getIdToken();
             const [moduleRes, progressRes] = await Promise.all([
-                axios.get('http://localhost:8080/api/education/modules', { headers: { Authorization: `Bearer ${token}` } }),
-                axios.get('http://localhost:8080/api/progress', { headers: { Authorization: `Bearer ${token}` } })
+                client.get('/api/education/modules', { headers: { Authorization: `Bearer ${token}` } }),
+                client.get('/api/progress', { headers: { Authorization: `Bearer ${token}` } })
             ]);
             setModules(moduleRes.data);
             setProgress(progressRes.data);

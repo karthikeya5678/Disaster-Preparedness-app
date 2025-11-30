@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './FloodRouteGame.module.css';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 
 const FLOOD_CELLS = [3, 6, 11, 12, 17, 20, 21];
@@ -15,7 +15,7 @@ const FloodRouteGame: React.FC = () => {
     const saveScore = async (score: number) => {
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.post('http://localhost:8080/api/progress/game', {
+            await client.post('/api/progress/game', {
                 gameName: 'Flood Escape', score, maxScore: 1
             }, { headers: { Authorization: `Bearer ${token}` } });
         } catch (error) { console.error("Failed to save game score", error); }

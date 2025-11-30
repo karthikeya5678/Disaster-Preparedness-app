@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
 import styles from './DrillsList.module.css';
@@ -24,7 +24,7 @@ const DrillsList: React.FC<DrillsListProps> = ({ drills, onAction, onEdit }) => 
     const handleParticipate = async (drillId: string) => {
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.patch(`http://localhost:8080/api/drills/${drillId}/participate`, {}, { headers: { Authorization: `Bearer ${token}` } });
+            await client.patch(`http://localhost:8080/api/drills/${drillId}/participate`, {}, { headers: { Authorization: `Bearer ${token}` } });
             onAction();
         } catch (error) { alert("There was an error recording your participation."); }
     };
@@ -33,7 +33,7 @@ const DrillsList: React.FC<DrillsListProps> = ({ drills, onAction, onEdit }) => 
         if (window.confirm("Are you sure you want to delete this drill?")) {
             try {
                 const token = await auth.currentUser?.getIdToken();
-                await axios.delete(`http://localhost:8080/api/drills/${drillId}`, { headers: { Authorization: `Bearer ${token}` } });
+                await client.delete(`http://localhost:8080/api/drills/${drillId}`, { headers: { Authorization: `Bearer ${token}` } });
                 onAction();
             } catch (error) { alert("Failed to delete drill."); }
         }

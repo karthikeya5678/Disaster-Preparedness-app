@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios';
+import client from '../api/client';
 import MainLayout from '../components/layout/MainLayout';
 import { useAuth } from '../lib/AuthContext';
 import { auth } from '../lib/firebase';
@@ -26,7 +26,7 @@ const VideoPlayer: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
             setError('');
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await axios.get(`http://localhost:8080/api/education/video-url/${lesson.content}`, {
+                const res = await client.get(`http://localhost:8080/api/education/video-url/${lesson.content}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setVideoUrl(res.data.url);
@@ -70,8 +70,8 @@ const ModulePage: React.FC = () => {
             try {
                 const token = await auth.currentUser?.getIdToken();
                 const [moduleRes, progressRes] = await Promise.all([
-                    axios.get(`http://localhost:8080/api/education/modules/${moduleId}`, { headers: { Authorization: `Bearer ${token}` } }),
-                    axios.get('http://localhost:8080/api/progress', { headers: { Authorization: `Bearer ${token}` } })
+                    client.get(`http://localhost:8080/api/education/modules/${moduleId}`, { headers: { Authorization: `Bearer ${token}` } }),
+                    client.get('/api/progress', { headers: { Authorization: `Bearer ${token}` } })
                 ]);
                 
                 setModuleData(moduleRes.data);
@@ -97,11 +97,11 @@ const ModulePage: React.FC = () => {
     const handleMarkAsComplete = async (lessonId: number) => {
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.post('http://localhost:8080/api/progress/complete', 
+            await client.post('/api/progress/complete', 
                 { moduleId: moduleId!, lessonId: lessonId },
                 { headers: { Authorization: `Bearer ${token}` } }
             );
-            const progressRes = await axios.get('http://localhost:8080/api/progress', { 
+            const progressRes = await client.get('/api/progress', { 
                 headers: { Authorization: `Bearer ${token}` }
             });
             setProgress(progressRes.data);

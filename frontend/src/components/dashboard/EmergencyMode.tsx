@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import styles from './EmergencyMode.module.css';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 
 interface Alert {
@@ -46,7 +46,7 @@ const EmergencyMode: React.FC<EmergencyModeProps> = ({ activeAlert }) => {
     };
 
     const sendStatus = async (token: string, payload: any) => {
-        const res = await axios.post('http://localhost:8080/api/emergency/check-in', payload, {
+        const res = await client.post('/api/emergency/check-in', payload, {
             headers: { Authorization: `Bearer ${token}` }
         });
         setStatus(payload.status);

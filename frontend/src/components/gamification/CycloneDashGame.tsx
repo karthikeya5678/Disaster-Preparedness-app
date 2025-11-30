@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './CycloneDashGame.module.css';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 
 const CycloneDashGame: React.FC = () => {
@@ -12,7 +12,7 @@ const CycloneDashGame: React.FC = () => {
     const saveScore = async (score: number) => {
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.post('http://localhost:8080/api/progress/game', {
+            await client.post('/api/progress/game', {
                 gameName: 'Cyclone Shelter Dash', score, maxScore: 1
             }, { headers: { Authorization: `Bearer ${token}` } });
         } catch (error) { console.error("Failed to save score", error); }

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
 import styles from './CMS.module.css';
@@ -44,10 +44,10 @@ const CreateDrillForm: React.FC<CreateDrillFormProps> = ({ initialData, onDrillC
         try {
             const token = await auth.currentUser?.getIdToken();
             if (initialData) {
-                await axios.put(`http://localhost:8080/api/drills/${initialData.id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
+                await client.put(`http://localhost:8080/api/drills/${initialData.id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
                 setMessage('Drill updated successfully!');
             } else {
-                await axios.post('http://localhost:8080/api/drills', payload, { headers: { Authorization: `Bearer ${token}` } });
+                await client.post('/api/drills', payload, { headers: { Authorization: `Bearer ${token}` } });
                 setMessage('Drill scheduled successfully!');
             }
             // The real-time listener on the parent page will handle the list update.

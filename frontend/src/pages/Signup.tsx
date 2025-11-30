@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import axios from 'axios';
+import client from '../api/client';
 import styles from './Auth.module.css'; // Use the correct, shared stylesheet
 
 const Signup: React.FC = () => {
@@ -19,15 +19,15 @@ const Signup: React.FC = () => {
         e.preventDefault();
         setError('');
         if (password.length < 6) { return setError("Password must be at least 6 characters long."); }
-        
+
         // Institution ID is now correctly not required for parents during signup.
         const isInstitutionIdRequired = role !== 'parent';
         if (isInstitutionIdRequired && !institutionId) { return setError('Institution ID is required for this role.'); }
 
         try {
             // The incorrect childUid field has been completely removed from the data payload.
-            await axios.post('http://localhost:8080/api/auth/register', {
-                email, password, fullName, role, 
+            await client.post('/api/auth/register', {
+                email, password, fullName, role,
                 institutionId: institutionId || null,
                 schoolName: schoolName || null,
                 grade: grade || null,
@@ -82,7 +82,7 @@ const Signup: React.FC = () => {
                                 <input id="institutionId" type="text" required={role !== 'parent'} value={institutionId} onChange={(e) => setInstitutionId(e.target.value)} className={styles.input} />
                             </div>
                         )}
-                        
+
                         {/* Grade field is now correctly hidden for Admins */}
                         {(role === 'student' || role === 'teacher' || role === 'admin') && (
                             <>
@@ -91,18 +91,18 @@ const Signup: React.FC = () => {
                                     <input id="schoolName" type="text" value={schoolName} onChange={(e) => setSchoolName(e.target.value)} className={styles.input} />
                                 </div>
                                 {(role === 'student' || role === 'teacher') && (
-                                     <div className={styles.formGroup}>
+                                    <div className={styles.formGroup}>
                                         <label htmlFor="grade" className={styles.label}>Grade / Class</label>
                                         <input id="grade" type="text" value={grade} onChange={(e) => setGrade(e.target.value)} className={styles.input} />
                                     </div>
                                 )}
-                                 <div className={styles.formGroup}>
+                                <div className={styles.formGroup}>
                                     <label htmlFor="city" className={styles.label}>City</label>
                                     <input id="city" type="text" value={city} onChange={(e) => setCity(e.target.value)} className={styles.input} />
                                 </div>
                             </>
                         )}
-                        
+
                         {error && <p className={styles.error}>{error}</p>}
                         <button type="submit" className={styles.button}>Sign Up</button>
                     </form>

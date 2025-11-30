@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styles from './EmergencyKitGame.module.css';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
-import axios from 'axios';
+import client from '../../api/client';
 
 const ALL_ITEMS = [
     { name: 'Water Bottle', correct: true, emoji: '💧' },
@@ -61,7 +61,7 @@ const EmergencyKitGame: React.FC = () => {
         // Save score to backend
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.post('http://localhost:8080/api/progress/game', {
+            await client.post('/api/progress/game', {
                 gameName: 'Emergency Kit Packer',
                 score: finalScore,
                 maxScore: CORRECT_ITEM_COUNT

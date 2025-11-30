@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import type { Module, Lesson } from '../../pages/ManageModulesPage';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 import styles from './CMS.module.css';
 
@@ -41,11 +41,11 @@ const ModuleForm: React.FC<ModuleFormProps> = ({ initialData, onSave, onCancel }
         try {
             const token = await auth.currentUser?.getIdToken();
             if (module.id) { // Editing existing module
-                await axios.put(`http://localhost:8080/api/education/modules/${module.id}`, module, {
+                await client.put(`http://localhost:8080/api/education/modules/${module.id}`, module, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             } else { // Creating new module
-                await axios.post('http://localhost:8080/api/education/modules', module, {
+                await client.post('/api/education/modules', module, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             }

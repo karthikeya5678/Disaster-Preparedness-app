@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MainLayout from '../components/layout/MainLayout';
 import { useAuth } from '../lib/AuthContext';
 import styles from './ProfilePage.module.css'; // Reuse existing profile page styles
-import axios from 'axios';
+import client from '../api/client';
 import { auth } from '../lib/firebase';
 import { Link } from 'react-router-dom';
 
@@ -20,7 +20,7 @@ const ManageChildPage: React.FC = () => {
             if (!currentUser) return;
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await axios.get('http://localhost:8080/api/users/my-child', {
+                const res = await client.get('/api/users/my-child', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setChildData({
@@ -49,7 +49,7 @@ const ManageChildPage: React.FC = () => {
         setError('');
         try {
             const token = await auth.currentUser?.getIdToken();
-            const res = await axios.put('http://localhost:8080/api/users/my-child', childData, {
+            const res = await client.put('/api/users/my-child', childData, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage(res.data.message);

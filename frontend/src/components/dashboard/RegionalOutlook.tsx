@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 import styles from './RegionalOutlook.module.css';
 
@@ -20,7 +20,7 @@ const RegionalOutlook: React.FC<RegionalOutlookProps> = ({ location }) => {
                 setLoading(true);
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await axios.get(`http://localhost:8080/api/dashboard/regional?lat=${location.latitude}&lon=${location.longitude}`, {
+                    const res = await client.get(`http://localhost:8080/api/dashboard/regional?lat=${location.latitude}&lon=${location.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     setRegionalData(res.data);

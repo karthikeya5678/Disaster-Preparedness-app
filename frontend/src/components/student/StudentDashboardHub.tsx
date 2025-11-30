@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
-import axios from 'axios';
+import client from '../../api/client';
 import ProgressCard from '../dashboard/ProgressCard';
 import NextDrillCard from '../dashboard/NextDrillCard';
 import DashboardCard from '../dashboard/DashboardCard';
@@ -24,7 +24,7 @@ const StudentDashboardHub: React.FC = () => {
             if (!currentUser) return;
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await axios.get('http://localhost:8080/api/dashboard/student', {
+                const res = await client.get('/api/dashboard/student', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(res.data);

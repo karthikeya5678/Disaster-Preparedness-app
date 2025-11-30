@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import styles from './EarthquakeDrillGame.module.css';
 import { auth } from '../../lib/firebase';
-import axios from 'axios';
+import client from '../../api/client';
 
 const EarthquakeDrillGame: React.FC = () => {
     const [gameState, setGameState] = useState<'start' | 'playing' | 'finished'>('start');
@@ -13,7 +13,7 @@ const EarthquakeDrillGame: React.FC = () => {
     const saveScore = async (score: number) => {
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.post('http://localhost:8080/api/progress/game', {
+            await client.post('/api/progress/game', {
                 gameName: 'Earthquake Survivor Drill',
                 score: score,
                 maxScore: 1

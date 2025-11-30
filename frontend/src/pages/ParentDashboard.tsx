@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../lib/AuthContext';
-import axios from 'axios';
+import client from '../api/client';
 import { auth } from '../lib/firebase';
 import DashboardCard from '../components/dashboard/DashboardCard';
 import ChildProgressCard from '../components/parent/ChildProgressCard';
@@ -29,7 +29,7 @@ const ParentDashboard: React.FC = () => {
 
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await axios.get(`http://localhost:8080/api/drills?institutionId=${currentUser.institutionId}`, {
+                const res = await client.get(`http://localhost:8080/api/drills?institutionId=${currentUser.institutionId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 

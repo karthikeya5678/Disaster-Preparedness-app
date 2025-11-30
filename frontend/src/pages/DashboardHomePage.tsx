@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth } from '../lib/AuthContext';
 import styles from './DashboardHomePage.module.css';
-import axios from 'axios';
+import client from '../api/client';
 import { auth } from '../lib/firebase';
 import useGeolocation from '../hooks/useGeolocation';
 
@@ -46,7 +46,7 @@ const DashboardHomePage: React.FC = () => {
             if (currentLocation && currentUser) {
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await axios.get(`http://localhost:8080/api/alerts?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}`, {
+                    const res = await client.get(`http://localhost:8080/api/alerts?lat=${currentLocation.latitude}&lon=${currentLocation.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     // Find the first alert with "High" severity to trigger emergency mode

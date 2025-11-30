@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../../api/client';
 // These are the correct relative paths from this file's location
 import { useAuth } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
@@ -28,7 +28,7 @@ const Drills: React.FC = () => {
       }
       try {
         const token = await auth.currentUser?.getIdToken();
-        const res = await axios.get(`http://localhost:8080/api/drills?institutionId=${currentUser.institutionId}`, {
+        const res = await client.get(`http://localhost:8080/api/drills?institutionId=${currentUser.institutionId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDrills(res.data);
@@ -51,7 +51,7 @@ const Drills: React.FC = () => {
     }
     try {
       const token = await auth.currentUser?.getIdToken();
-      await axios.post(
+      await client.post(
         `http://localhost:8080/api/drills/participate`,
         {
           drillId,

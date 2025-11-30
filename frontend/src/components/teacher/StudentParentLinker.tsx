@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useAuth, type UserProfile } from '../../lib/AuthContext';
 import { auth } from '../../lib/firebase';
-import axios from 'axios';
+import client from '../../api/client';
 import styles from './StudentParentLinker.module.css';
 
 const StudentParentLinker: React.FC = () => {
@@ -21,8 +21,8 @@ const StudentParentLinker: React.FC = () => {
             const token = await auth.currentUser?.getIdToken();
             const headers = { Authorization: `Bearer ${token}` };
             const [studentsRes, parentsRes] = await Promise.all([
-                axios.get(`http://localhost:8080/api/teacher/students?institutionId=${currentUser.institutionId}`, { headers }),
-                axios.get(`http://localhost:8080/api/teacher/parents`, { headers })
+                client.get(`http://localhost:8080/api/teacher/students?institutionId=${currentUser.institutionId}`, { headers }),
+                client.get(`http://localhost:8080/api/teacher/parents`, { headers })
             ]);
             setStudents(studentsRes.data);
             setParents(parentsRes.data);
@@ -42,7 +42,7 @@ const StudentParentLinker: React.FC = () => {
         }
         try {
             const token = await auth.currentUser?.getIdToken();
-            await axios.post('http://localhost:8080/api/teacher/link', { studentUid, parentUid }, {
+            await client.post('/api/teacher/link', { studentUid, parentUid }, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setMessage(`Successfully linked parent to student.`);

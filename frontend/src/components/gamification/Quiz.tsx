@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Quiz.module.css';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 import { useNavigate } from 'react-router-dom';
 
@@ -54,7 +54,7 @@ const Quiz: React.FC<QuizProps> = ({ questions, moduleId, lessonId }) => {
             const saveResults = async () => {
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    await axios.post('http://localhost:8080/api/progress/quiz', {
+                    await client.post('/api/progress/quiz', {
                         moduleId,
                         lessonId,
                         score,

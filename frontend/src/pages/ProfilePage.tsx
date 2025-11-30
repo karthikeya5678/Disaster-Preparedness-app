@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import MainLayout from '../components/layout/MainLayout';
 import { useAuth, type UserProfile } from '../lib/AuthContext';
 import styles from './ProfilePage.module.css';
-import axios from 'axios';
+import client from '../api/client';
 import { auth } from '../lib/firebase';
 import { sendPasswordResetEmail } from 'firebase/auth';
 import { Link } from 'react-router-dom';
@@ -31,7 +31,7 @@ const ProfilePage: React.FC = () => {
         setError('');
         try {
             const token = await auth.currentUser?.getIdToken();
-            const response = await axios.put('http://localhost:8080/api/users/profile', profileData, 
+            const response = await client.put('/api/users/profile', profileData, 
                 { headers: { Authorization: `Bearer ${token}` } }
             );
             setMessage(response.data.message);

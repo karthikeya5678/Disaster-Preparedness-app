@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import client from '../api/client';
 import { useAuth } from '../lib/AuthContext';
 import { auth } from '../lib/firebase';
 import styles from './ProgressPage.module.css';
@@ -38,7 +38,7 @@ const ProgressPage: React.FC = () => {
             if (!currentUser) return;
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await axios.get('http://localhost:8080/api/progress', {
+                const res = await client.get('/api/progress', {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setProgress(res.data);

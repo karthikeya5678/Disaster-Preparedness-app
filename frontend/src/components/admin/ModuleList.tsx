@@ -1,6 +1,6 @@
 import React from 'react';
 import type { Module } from '../../pages/ManageModulesPage';
-import axios from 'axios';
+import client from '../../api/client';
 import { auth } from '../../lib/firebase';
 import styles from './CMS.module.css';
 
@@ -15,7 +15,7 @@ const ModuleList: React.FC<ModuleListProps> = ({ modules, onEdit, onDelete }) =>
         if (window.confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
             try {
                 const token = await auth.currentUser?.getIdToken();
-                await axios.delete(`http://localhost:8080/api/education/modules/${moduleId}`, {
+                await client.delete(`http://localhost:8080/api/education/modules/${moduleId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 onDelete();
