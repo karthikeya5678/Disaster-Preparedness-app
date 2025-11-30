@@ -21,8 +21,8 @@ const StudentParentLinker: React.FC = () => {
             const token = await auth.currentUser?.getIdToken();
             const headers = { Authorization: `Bearer ${token}` };
             const [studentsRes, parentsRes] = await Promise.all([
-                client.get(`https://disaster-backend.onrender.com/api/teacher/students?institutionId=${currentUser.institutionId}`, { headers }),
-                client.get(`https://disaster-backend.onrender.com/api/teacher/parents`, { headers })
+                client.get(`https://disaster-preparedness-app.onrender.com/api/teacher/students?institutionId=${currentUser.institutionId}`, { headers }),
+                client.get(`https://disaster-preparedness-app.onrender.com/api/teacher/parents`, { headers })
             ]);
             setStudents(studentsRes.data);
             setParents(parentsRes.data);

@@ -15,7 +15,7 @@ const ModuleList: React.FC<ModuleListProps> = ({ modules, onEdit, onDelete }) =>
         if (window.confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
             try {
                 const token = await auth.currentUser?.getIdToken();
-                await client.delete(`https://disaster-backend.onrender.com/api/education/modules/${moduleId}`, {
+                await client.delete(`https://disaster-preparedness-app.onrender.com/api/education/modules/${moduleId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 onDelete();

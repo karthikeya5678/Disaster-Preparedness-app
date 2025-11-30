@@ -34,7 +34,7 @@ const ChildProgressCard: React.FC = () => {
                 // This check is now more robust.
                 if (childProfile && childProfile.uid) {
                     setChild(childProfile);
-                    const progressRes = await client.get(`https://disaster-backend.onrender.com/api/progress?uid=${childProfile.uid}`, { headers });
+                    const progressRes = await client.get(`https://disaster-preparedness-app.onrender.com/api/progress?uid=${childProfile.uid}`, { headers });
                     setProgress(progressRes.data);
                 } else {
                     // This will now only trigger if the backend sends a truly empty response.

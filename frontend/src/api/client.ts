@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = import.meta.env.VITE_API_URL || 'https://disaster-backend.onrender.com';
+const API_URL = import.meta.env.VITE_API_URL || 'https://disaster-preparedness-app.onrender.com';
 
 const client = axios.create({
     baseURL: API_URL,

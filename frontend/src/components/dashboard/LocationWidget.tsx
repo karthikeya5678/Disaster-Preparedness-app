@@ -23,7 +23,7 @@ const LocationWidget: React.FC<LocationWidgetProps> = ({ initialLocation, onLoca
                 setLoading(true);
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await client.get(`https://disaster-backend.onrender.com/api/weather?lat=${initialLocation.latitude}&lon=${initialLocation.longitude}`, {
+                    const res = await client.get(`https://disaster-preparedness-app.onrender.com/api/weather?lat=${initialLocation.latitude}&lon=${initialLocation.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     setWeather(res.data);
@@ -43,7 +43,7 @@ const LocationWidget: React.FC<LocationWidgetProps> = ({ initialLocation, onLoca
         setSearchError('');
         try {
             const token = await auth.currentUser?.getIdToken();
-            const res = await client.get(`https://disaster-backend.onrender.com/api/weather/by-city?q=${searchCity}`, {
+            const res = await client.get(`https://disaster-preparedness-app.onrender.com/api/weather/by-city?q=${searchCity}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setWeather(res.data); // Update this widget's own display

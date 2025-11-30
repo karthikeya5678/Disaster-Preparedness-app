@@ -24,7 +24,7 @@ const DrillsList: React.FC<DrillsListProps> = ({ drills, onAction, onEdit }) => 
     const handleParticipate = async (drillId: string) => {
         try {
             const token = await auth.currentUser?.getIdToken();
-            await client.patch(`https://disaster-backend.onrender.com/api/drills/${drillId}/participate`, {}, { headers: { Authorization: `Bearer ${token}` } });
+            await client.patch(`https://disaster-preparedness-app.onrender.com/api/drills/${drillId}/participate`, {}, { headers: { Authorization: `Bearer ${token}` } });
             onAction();
         } catch (error) { alert("There was an error recording your participation."); }
     };
@@ -33,7 +33,7 @@ const DrillsList: React.FC<DrillsListProps> = ({ drills, onAction, onEdit }) => 
         if (window.confirm("Are you sure you want to delete this drill?")) {
             try {
                 const token = await auth.currentUser?.getIdToken();
-                await client.delete(`https://disaster-backend.onrender.com/api/drills/${drillId}`, { headers: { Authorization: `Bearer ${token}` } });
+                await client.delete(`https://disaster-preparedness-app.onrender.com/api/drills/${drillId}`, { headers: { Authorization: `Bearer ${token}` } });
                 onAction();
             } catch (error) { alert("Failed to delete drill."); }
         }
