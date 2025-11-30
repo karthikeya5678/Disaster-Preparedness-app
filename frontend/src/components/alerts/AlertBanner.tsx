@@ -23,7 +23,7 @@ const AlertBanner: React.FC = () => {
             if (currentUser && location) {
                 try {
                     const token = await auth.currentUser?.getIdToken();
-                    const res = await client.get(`http://localhost:8080/api/alerts?lat=${location.latitude}&lon=${location.longitude}`, {
+                    const res = await client.get(`https://disaster-backend.onrender.com/api/alerts?lat=${location.latitude}&lon=${location.longitude}`, {
                         headers: { Authorization: `Bearer ${token}` }
                     });
                     // Show all non-High severity alerts

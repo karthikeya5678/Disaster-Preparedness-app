@@ -22,7 +22,7 @@ const ChildProgressPage: React.FC = () => {
                 const childRes = await client.get('/api/users/my-child', { headers });
                 setChild(childRes.data);
                 // Then, we can fetch the child's progress using their UID
-                const progressRes = await client.get(`http://localhost:8080/api/progress?uid=${childRes.data.uid}`, { headers });
+                const progressRes = await client.get(`https://disaster-backend.onrender.com/api/progress?uid=${childRes.data.uid}`, { headers });
                 setProgress(progressRes.data);
             } catch (error) {
                 console.error("Failed to fetch child data", error);

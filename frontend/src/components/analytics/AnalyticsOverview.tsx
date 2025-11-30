@@ -27,7 +27,7 @@ const AnalyticsOverview: React.FC = () => {
             }
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await client.get(`http://localhost:8080/api/dashboard/admin?institutionId=${currentUser.institutionId}`, {
+                const res = await client.get(`https://disaster-backend.onrender.com/api/dashboard/admin?institutionId=${currentUser.institutionId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setData(res.data);

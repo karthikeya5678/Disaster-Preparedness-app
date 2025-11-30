@@ -28,7 +28,7 @@ const Drills: React.FC = () => {
       }
       try {
         const token = await auth.currentUser?.getIdToken();
-        const res = await client.get(`http://localhost:8080/api/drills?institutionId=${currentUser.institutionId}`, {
+        const res = await client.get(`https://disaster-backend.onrender.com/api/drills?institutionId=${currentUser.institutionId}`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setDrills(res.data);
@@ -52,7 +52,7 @@ const Drills: React.FC = () => {
     try {
       const token = await auth.currentUser?.getIdToken();
       await client.post(
-        `http://localhost:8080/api/drills/participate`,
+        `https://disaster-backend.onrender.com/api/drills/participate`,
         {
           drillId,
           userId: currentUser.uid,

@@ -41,7 +41,7 @@ const ModuleForm: React.FC<ModuleFormProps> = ({ initialData, onSave, onCancel }
         try {
             const token = await auth.currentUser?.getIdToken();
             if (module.id) { // Editing existing module
-                await client.put(`http://localhost:8080/api/education/modules/${module.id}`, module, {
+                await client.put(`https://disaster-backend.onrender.com/api/education/modules/${module.id}`, module, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
             } else { // Creating new module

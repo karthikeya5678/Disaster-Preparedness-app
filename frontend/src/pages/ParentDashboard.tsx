@@ -29,7 +29,7 @@ const ParentDashboard: React.FC = () => {
 
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await client.get(`http://localhost:8080/api/drills?institutionId=${currentUser.institutionId}`, {
+                const res = await client.get(`https://disaster-backend.onrender.com/api/drills?institutionId=${currentUser.institutionId}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
 

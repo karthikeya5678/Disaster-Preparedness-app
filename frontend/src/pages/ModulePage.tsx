@@ -26,7 +26,7 @@ const VideoPlayer: React.FC<{ lesson: Lesson }> = ({ lesson }) => {
             setError('');
             try {
                 const token = await auth.currentUser?.getIdToken();
-                const res = await client.get(`http://localhost:8080/api/education/video-url/${lesson.content}`, {
+                const res = await client.get(`https://disaster-backend.onrender.com/api/education/video-url/${lesson.content}`, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 setVideoUrl(res.data.url);
@@ -70,7 +70,7 @@ const ModulePage: React.FC = () => {
             try {
                 const token = await auth.currentUser?.getIdToken();
                 const [moduleRes, progressRes] = await Promise.all([
-                    client.get(`http://localhost:8080/api/education/modules/${moduleId}`, { headers: { Authorization: `Bearer ${token}` } }),
+                    client.get(`https://disaster-backend.onrender.com/api/education/modules/${moduleId}`, { headers: { Authorization: `Bearer ${token}` } }),
                     client.get('/api/progress', { headers: { Authorization: `Bearer ${token}` } })
                 ]);
                 

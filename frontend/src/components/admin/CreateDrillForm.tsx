@@ -44,7 +44,7 @@ const CreateDrillForm: React.FC<CreateDrillFormProps> = ({ initialData, onDrillC
         try {
             const token = await auth.currentUser?.getIdToken();
             if (initialData) {
-                await client.put(`http://localhost:8080/api/drills/${initialData.id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
+                await client.put(`https://disaster-backend.onrender.com/api/drills/${initialData.id}`, payload, { headers: { Authorization: `Bearer ${token}` } });
                 setMessage('Drill updated successfully!');
             } else {
                 await client.post('/api/drills', payload, { headers: { Authorization: `Bearer ${token}` } });
